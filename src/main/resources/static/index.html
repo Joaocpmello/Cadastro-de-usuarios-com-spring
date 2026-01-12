@@ -10,15 +10,35 @@
 <h1>Cadastro</h1>
 
 <form id="formCadastro">
-    <input type="text" id="nome" placeholder="Nome" required><br><br>
-    <input type="email" id="email" placeholder="Email" required><br><br>
-    <input type="password" id="senha" placeholder="Senha" required><br><br>
-
+    <input type="text" id="nome" placeholder="Nome" required>
+    <br><br>
+    <input type="email" id="email" placeholder="Email" required>
+    <br><br>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <br><br>
     <button type="submit">Cadastrar</button>
 </form>
 
-<p id="mensagem"</p>
+<p>
+    Já tem conta?
+    <a href="login.html">Entrar</a>
+</p>
 
-<script src="script.js"></script>
+<div id="mensagem"></div>
+
+<h2>Usuários cadastrados</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody id="tabelaUsuarios"></tbody>
+</table>
+
+<script src="/js/script.js"></script>
 </body>
 </html>

@@ -47,14 +47,18 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<?> atualizar(
-            @PathVariable Long id,
-            @Valid @RequestBody Usuario usuario
+            @RequestHeader("Authorization") String authorization,
+            @RequestBody Usuario usuario
     ) {
         try {
-            Usuario atualizado = usuarioService.atualizar(id, usuario);
+            String token = authorization.replace("Bearer ", "");
+            String email = jwtService.extrairEmail(token);
+
+            Usuario atualizado = usuarioService.atualizarPorEmail(email, usuario);
             return ResponseEntity.ok(atualizado);
+
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

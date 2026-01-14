@@ -36,8 +36,9 @@ public class UsuarioService {
             throw new RuntimeException("Senha é obrigatória");
         }
 
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-
+        if (usuario.getId() == null) {
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
         return usuarioRepository.save(usuario);
     }
     public List<Usuario> listarTodos(){
@@ -49,18 +50,23 @@ public class UsuarioService {
         }
         usuarioRepository.deleteById(id);
     }
-    public Usuario atualizar(Long id, Usuario usuarioAtualizado){
-        Usuario usuario = usuarioRepository.findById(id)
+    public Usuario atualizarPorEmail(String email, Usuario dados){
+        Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        usuario.setNome(usuarioAtualizado.getNome());
-        usuario.setEmail(usuarioAtualizado.getEmail());
+        usuario.setNome(dados.getNome());
+        usuario.setEmail(dados.getEmail());
 
         return usuarioRepository.save(usuario);
     }
+
     public Usuario buscarPorEmail(String email) {
-        return usuarioRepository.findByEmail(email)
+        System.out.println("EMAIL RECEBIDO: " + email);
+        Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
+
+        System.out.println("USUÁRIO ENCONTRADO: " + usuario.getEmail());
+        return usuario;
     }
 
     public Usuario autenticar (String email, String senha) {

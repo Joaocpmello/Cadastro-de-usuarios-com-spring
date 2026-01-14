@@ -10,7 +10,6 @@ import com.seuprojeto.cadastro.security.JwtService;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthController {
 
     private final UsuarioService usuarioService;
@@ -23,20 +22,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> dados) {
-        try {
-            String email = dados.get("email");
-            String senha = dados.get("senha");
+        String email = dados.get("email");
+        String senha = dados.get("senha");
 
-            Usuario usuario = usuarioService.autenticar(email, senha);
+        Usuario usuario = usuarioService.autenticar(email, senha);
 
-            String token = jwtService.gerarToken(usuario.getEmail());
+        String token = jwtService.gerarToken(usuario.getEmail());
 
-            return ResponseEntity.ok(Map.of(
-                    "token", token,
-                    "tipo", "Bearer"
-            ));
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body((e.getMessage()));
-        }
+        return ResponseEntity.ok(Map.of(
+                "token", token,
+                "tipo", "Bearer"
+        ));
     }
 }

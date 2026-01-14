@@ -24,10 +24,7 @@ form.addEventListener("submit", function (event) {
         })
         .then(data => {
             localStorage.setItem("token", data.token);
-
-            mensagem.innerText = "Login realizado com sucesso!";
-            mensagem.style.color = "green";
-
+            window.location.href = "dashboard.html";
         })
         .catch(error => {
             mensagem.innerText = error.message;

@@ -29,10 +29,10 @@ public class SecurityConfig {
                                 "/index.html",
                                 "/login.html",
                                 "/cadastro.html",
-
+                                "/dashboard.html",
+                                "/auth/**",
+                                "/usuarios/",
                                 "/login",
-                                "/usuarios",
-
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",

@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
-<h1>Cadastro</h1>
+<div class="container">
+    <h1>Cadastro</h1>
 
-<form id="formCadastro">
-    <input type="text" id="nome" placeholder="Nome" required>
-    <br><br>
-    <input type="email" id="email" placeholder="Email" required>
-    <br><br>
-    <input type="password" id="senha" placeholder="Senha" required>
-    <br><br>
-    <button type="submit">Cadastrar</button>
-</form>
+    <form id="formCadastro" class="form">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <button type="submit">Cadastrar</button>
+    </form>
 
-<p>
-    Já tem conta?
-    <a href="login.html">Entrar</a>
-</p>
+    <p class="link-text">
+        Já tem conta?
+        <a href="login.html">Entrar</a>
+    </p>
 
-<div id="mensagem"></div>
+    <div id="mensagem"></div>
+</div>
 
 <script src="/js/script.js"></script>
 </body>

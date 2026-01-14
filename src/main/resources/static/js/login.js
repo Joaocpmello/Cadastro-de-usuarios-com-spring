@@ -9,7 +9,7 @@ form.addEventListener("submit", function (event) {
         senha: document.getElementById("senha").value
     };
 
-    fetch("http://localhost:8080/login", {
+    fetch("http://localhost:8080/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    function logout() {
+    window.logout = function() {
         localStorage.removeItem("token");
         window.location.href = "login.html";
-    }
+    };
 
     carregarUsuarios();
 });

@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<h2>Dashboard</h2>
+<div class="container">
+    <div class="header">
+        <h2>Dashboard</h2>
+        <button onclick="logout()" class="btn-logout">Sair</button>
+    </div>
 
-<button onclick="logout()">Sair</button>
+    <p id="mensagem"></p>
 
-<p id="mensagem"></p>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody id="tabelaUsuarios"></tbody>
-</table>
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody id="tabelaUsuarios"></tbody>
+        </table>
+    </div>
+</div>
 
 <script src="/js/dashboard.js"></script>
 </body>

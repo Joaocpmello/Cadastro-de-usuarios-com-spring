@@ -20,7 +20,7 @@ public class AuthController {
         this.jwtService = jwtService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> dados) {
         String email = dados.get("email");
         String senha = dados.get("senha");

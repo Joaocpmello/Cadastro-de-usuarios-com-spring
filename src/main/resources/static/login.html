@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="container">
+    <h2>Login</h2>
 
-<form id="formLogin">
-    <input type="email" id="email" placeholder="Email" required>
-    <br><br>
+    <form id="formLogin" class="form">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
 
-    <input type="password" id="senha" placeholder="Senha" required>
-    <br><br>
+    <p id="mensagem"></p>
 
-    <button type="submit">Entrar</button>
-</form>
-
-<p id="mensagem"></p>
-
-<p>
-    Não tem conta?
-    <a href="/">Cadastre-se</a>
-</p>
+    <p class="link-text">
+        Não tem conta?
+        <a href="/">Cadastre-se</a>
+    </p>
+</div>
 
 <script src="/js/login.js"></script>
 </body>

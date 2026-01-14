@@ -14,7 +14,7 @@ public class JwtService {
 
     private static final String SECRET_KEY =
             "minha-chave-super-secreta-com-mais-de-32-caracteres";
-    private static final long EXPIRATION = 1000 * 60 * 60; // 1 hora
+    private static final long EXPIRATION = 1000 * 60 * 60;
 
     private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 

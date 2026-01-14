@@ -29,7 +29,6 @@ form.addEventListener("submit", function(event) {
             mensagem.innerText = "Usuário cadastrado com sucesso";
             mensagem.style.color = "green";
             form.reset();
-            carregarUsuarios();
         })
         .catch(error => {
             mensagem.innerText = error.message;

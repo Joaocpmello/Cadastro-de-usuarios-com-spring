@@ -60,12 +60,31 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario atualizarPorId(Long id, Usuario dados){
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if (dados.getNome() != null && !dados.getNome().isBlank()) {
+            usuario.setNome(dados.getNome());
+        }
+
+        if (dados.getEmail() != null && !dados.getEmail().isBlank()) {
+            usuarioRepository.findByEmail(dados.getEmail())
+                    .ifPresent(outroUsuario -> {
+                        if (!outroUsuario.getId().equals(id)) {
+                            throw new RuntimeException("Email já cadastrado");
+                        }
+                    });
+            usuario.setEmail(dados.getEmail());
+        }
+
+        return usuarioRepository.save(usuario);
+    }
+
     public Usuario buscarPorEmail(String email) {
-        System.out.println("EMAIL RECEBIDO: " + email);
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
 
-        System.out.println("USUÁRIO ENCONTRADO: " + usuario.getEmail());
         return usuario;
     }
 

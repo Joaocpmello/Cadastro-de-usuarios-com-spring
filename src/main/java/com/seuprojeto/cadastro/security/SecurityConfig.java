@@ -1,6 +1,7 @@
 package com.seuprojeto.cadastro.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,12 +15,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthFilter jwtAuthFilter;
+
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
-
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
 
@@ -31,19 +37,22 @@ public class SecurityConfig {
                                 "/cadastro.html",
                                 "/dashboard.html",
                                 "/auth/**",
-                                "/usuarios/",
-                                "/login",
-                                "/css/**",
                                 "/js/**",
+                                "/css/**",
                                 "/images/**",
                                 "/favicon.ico"
                         ).permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+
                         .anyRequest().authenticated()
                 )
 
                 .sessionManagement(sess ->
                         sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
+
+                http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -53,4 +62,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
